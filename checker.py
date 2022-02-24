@@ -28,7 +28,12 @@ for battle in battle_list:
     with open(battle) as f:
         file = f.read()
     l = mc_info.get(mc,[0,0])
-    l[0] += file.count("*")
+    #l[0] - amount of words
+    #l[1] - amount of battles
+    with open("words.yml") as bd:
+       words = bd.read()
+    for cur_word in words.lower().split():
+        l[0] += file.lower().count(cur_word)
     l[1] += 1
     mc_info[mc] = l
 
@@ -36,10 +41,9 @@ for battle in battle_list:
         best_word[mc] = dict()
         our_text = file.lower()
     for word in our_text.split():
-        
         if len(word) < 3:
             continue
-        for tr in [",",".","!","?",":","-",";","»","«"]:
+        for tr in [",",".","!","?",":","-",";","»","«", "...", "(", ")", "&quot", "…"]:
             word = word.strip(tr)
         word = word.strip()
         if word not in best_word[mc]:
