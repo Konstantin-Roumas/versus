@@ -7,6 +7,6 @@ Program has 3 atributes:
 1. "--top-bad-words=number" - You must enter a number, after which you will be shown the top of the most obscene MC
 2. "--top-words=number" - You have to enter a number to find out the number of favorite words selected MC
 3. "--name=mc's name" - You must enter the name of the ms you want to get information about
-To run the program, you must prescribe "python3 checker.py --top-bad-words=number --top-words=number --name=mc's name"
+4. To run the program, you must prescribe "python3 checker.py --top-bad-words=number --top-words=number --name=mc's name"
 # Notes
 MS who have spaces in their aliases are entered without THEM
