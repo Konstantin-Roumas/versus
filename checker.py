@@ -58,16 +58,19 @@ first.add_argument("--top-bad-words", type=int)
 first.add_argument("--name",type=str)
 first.add_argument("--top-words",type=int)
 args_dict = vars(first.parse_args())
-ans = result[0:args_dict["top_bad_words"]]
+#ans = result[0:args_dict["top_bad_words"]]
 
-for mc, cnt in ans:
-    word_bat = cnt[0] / cnt[1]
-    print("{} | батлов {} | {} нецензурных слов | {} слова на батл".format(mc, cnt[1], cnt[0], word_bat))
+if args_dict.get("top_bad_words") != None:
+    for mc, cnt in result[0:args_dict["top_bad_words"]]:
+        word_bat = cnt[0] / cnt[1]
+        print("{} | батлов {} | {} нецензурных слов | {} слова на батл".format(mc, cnt[1], cnt[0], word_bat))
 
-if args_dict["name"]  not in best_word:
+if args_dict.get("name") != None and args_dict["name"]  not in best_word:
     print("Мы не знаем этого МС")
-else:
+elif args_dict.get("name") != None and args_dict.get("top_words"):
     res = best_word[args_dict["name"]].items()
     res = sorted(res,key=itemgetter(1), reverse=True)
-    for i in res[0:args_dict["top_words"]]:
-        print("Слово {} - {} раз".format(i[0], i[1]))
+    if args_dict.get("top_words") != None:
+        for i in res[0:args_dict["top_words"]]:
+        #for i in res[0:args_dict["top_words"]]:
+            print("Слово {} - {} раз".format(i[0], i[1]))
